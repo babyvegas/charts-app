@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomePageComponent } from './shared/pages/home-page/home-page.component';
+import { AboutPageComponent } from './shared/pages/about-page/about-page.component';
+import { TracksPageComponent } from './shared/pages/tracks-page/tracks-page.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'home', component: HomePageComponent },
+  { path: 'about', component: AboutPageComponent },
+  { path: 'tracks', component:  TracksPageComponent},
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
