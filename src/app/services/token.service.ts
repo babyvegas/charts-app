@@ -105,7 +105,7 @@ profile: any;
 
     /* Peticion a los tracks mas escuchados */
     async fetchTopTracks(accessToken: any): Promise<any> {
-      const response = await fetch('https://api.spotify.com/v1/me/top/tracks', {
+      const response = await fetch('https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=long_term', {
         headers: { 'Authorization': `Bearer ${accessToken}` }
       });
 
@@ -113,8 +113,19 @@ profile: any;
         throw new Error('Failed to fetch top tracks');
       }
       const data = await response.json();
-      console.log("data",data)
       return data;
     }
 
-}
+    /* Peticion a los artistas mas escuchados */
+    async fetchTopArtists(accessToken: any): Promise<any> {
+      const response = await fetch('https://api.spotify.com/v1/me/top/artists?limit=10', {
+        headers: { 'Authorization': `Bearer ${accessToken}`}
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch top tracks');
+    }
+    const data = await response.json();
+    console.log("dataArtists",data)
+    return data;
+
+}}

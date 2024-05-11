@@ -52,7 +52,7 @@ export class SidenavComponent {
     {
       icon: 'grade',
       label: 'Top Artists',
-      route: '/top-artists'
+      route: '/artists'
     },
     {
       icon: 'sync',

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TokenService } from '../../../services/token.service';
-import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-tracks-page',
@@ -37,7 +36,7 @@ export class TracksPageComponent {
               };
             });
         });
-        console.log("array tracks",this.tracks)} catch (error) {
+        } catch (error) {
           console.error('Error getting profile', error);
         }
       }

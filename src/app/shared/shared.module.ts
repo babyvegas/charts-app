@@ -11,6 +11,7 @@ import { MatList, MatListModule } from '@angular/material/list';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TracksPageComponent } from './pages/tracks-page/tracks-page.component';
 import {MatTableModule} from '@angular/material/table';
+import { ArtistsComponent } from './pages/artists/artists.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {MatTableModule} from '@angular/material/table';
     AboutPageComponent,
     SidenavComponent,
     TracksPageComponent,
+    ArtistsComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import {MatTableModule} from '@angular/material/table';
     HomePageComponent,
     AboutPageComponent,
     SidenavComponent,
-    TracksPageComponent
+    TracksPageComponent,
+    ArtistsComponent,
   ]
 })
 export class SharedModule { }
