@@ -14,12 +14,10 @@ export class AboutPageComponent implements OnInit {
   public img: string = '';
   public email: string = '';
   async ngOnInit() {
+
     try {
       this.profile = await this.tokenService.getAuthCode();
-      console.log(this.profile)
-      this.name = this.profile.display_name;
-      this.img = this.profile.images[1].url;
-      this.email = this.profile.email;
+      console.log(this.profile);
     } catch (error) {
       console.error('Error getting profile', error);
     }

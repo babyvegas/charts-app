@@ -21,15 +21,21 @@ export class SidenavComponent {
   constructor(
     private tokenService: TokenService
   ) { }
-
-
   private profile: any;
   public name: string = '';
   public img: string = '';
   public email: string = '';
+  public isLogged: boolean = false;
+  ngOnInit() {
+    this.tokenService.loggedIn$.subscribe(isLogged => {
+      this.isLogged = isLogged;
+    })
+  }
+
   async getCodeForToken() {
     try {
       await this.tokenService.getAuthCode();
+      this.isLogged = this.tokenService.isLoggedIn();
     } catch (error) {
       console.error('Error getting token', error);
     }
@@ -37,6 +43,7 @@ export class SidenavComponent {
 
   logout(){
     this.tokenService.logout();
+    this.isLogged = this.tokenService.isLoggedIn();
   }
 
   menuItems: MenuItem[] = [

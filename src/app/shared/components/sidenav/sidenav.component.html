@@ -10,11 +10,11 @@
   <mat-icon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" matListItemIcon>{{item.icon}}</mat-icon>
   <span matListItemTitle *ngIf="!sideNavCollapsed()">{{item.label}}</span>
 </a>
-<a mat-list-item>
+<a mat-list-item *ngIf="!isLogged">
   <mat-icon matListItemIcon>power_settings_new</mat-icon>
   <span matListItemTitle (click)="getCodeForToken()">Iniciar Sesion</span>
 </a>
-<a mat-list-item>
+<a mat-list-item *ngIf="isLogged">  <!-- TODO: Añadir ngIf para mostrar el boton una vez que se solvente bug del verifier -->
   <mat-icon matListItemIcon>power_settings_new</mat-icon>
   <span matListItemTitle (click)="logout()">Cerrar Sesion</span>
 </a>
