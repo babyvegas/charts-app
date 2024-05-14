@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class TokenService {
 
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn());
+  profileData = new BehaviorSubject<any>(null);
   public loggedIn$ = this.loggedIn.asObservable();
   profile: any;
   private authorizationEndpoint = 'https://accounts.spotify.com/authorize';
@@ -17,38 +18,21 @@ export class TokenService {
   private scope = 'user-read-private user-read-email user-top-read';
   async getAuthCode(){
     const clientId = environment.clientId;
-    const params = new URLSearchParams(window.location.search);
-
-    /* La primera vez que accedamos, no tendremos un code, por lo que redirigiremos al usuario a la página de autenticación de Spotify.
-     Si ya tenemos un code, lo usaremos para obtener un access token y, a continuación, obtendremos el perfil del usuario. */
-/*     if (!code) {
-      this.redirectToAuthCodeFlow(clientId);
-    } else {
-      try {
-        const accessToken = await this.getAccessToken(clientId, code);
-        const profile = await this.fetchProfile(accessToken);
-        // Guarda el token de acceso y el estado de inicio de sesión solo si getAccessToken() se completa con éxito
-        localStorage.setItem("access_token", accessToken);
-        localStorage.setItem('isLogged', 'true');
-        this.loggedIn.next(true);
-        return profile;
-      } catch (error) {
-        console.error('Error getting access token', error);
-      }
-    } */
     // On page load, try to fetch auth code from current browser search URL
     const args = new URLSearchParams(window.location.search);
     const code = args.get('code');
     if(code){
       const accessToken = await this.getAccessToken(clientId, code);
       this.loggedIn.next(true);
+      localStorage.setItem('access_token', accessToken);
       const profile = await this.fetchProfile(accessToken);
+      this.profileData.next(profile);
       // Remove code from URL so we can refresh correctly.
       const url = new URL(window.location.href);
       url.searchParams.delete("code");
       const updatedUrl = url.search ? url.href : url.href.replace('?', '');
       window.history.replaceState({}, document.title, updatedUrl);
-      return profile;
+      this.profileData = profile;
     } else {
       this.redirectToAuthCodeFlow(clientId);
     }
@@ -130,7 +114,6 @@ export class TokenService {
       throw new Error('Failed to fetch profile');
     }
     const profile = await response.json();
-    localStorage.setItem("access_token", accessToken);
     return profile;
   }
     /* Se elimina de la memoria local el verificador y el access token, se redirige a pagina principal */
@@ -143,7 +126,7 @@ export class TokenService {
 
     /* Peticion a los tracks mas escuchados */
     async fetchTopTracks(accessToken: any): Promise<any> {
-      const response = await fetch('https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=long_term', {
+      const response = await fetch('https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=short_term', {
         headers: { 'Authorization': `Bearer ${accessToken}` }
       });
 
@@ -163,7 +146,6 @@ export class TokenService {
       throw new Error('Failed to fetch top tracks');
     }
     const data = await response.json();
-    console.log("dataArtists",data)
     return data;
 
 }

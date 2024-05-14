@@ -21,7 +21,6 @@ export class SidenavComponent {
   constructor(
     private tokenService: TokenService
   ) { }
-  private profile: any;
   public name: string = '';
   public img: string = '';
   public email: string = '';
@@ -30,11 +29,17 @@ export class SidenavComponent {
     this.tokenService.loggedIn$.subscribe(isLogged => {
       this.isLogged = isLogged;
     })
-  }
-
+    this.tokenService.profileData.subscribe(profile => {
+      if(profile){
+        this.name = profile.display_name;
+        this.img = profile.images[1].url;
+        this.email = profile.email;
+      }
+    }
+  )};
   async getCodeForToken() {
     try {
-      await this.tokenService.getAuthCode();
+      const token = await this.tokenService.getAuthCode();
       this.isLogged = this.tokenService.isLoggedIn();
     } catch (error) {
       console.error('Error getting token', error);

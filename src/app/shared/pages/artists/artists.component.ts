@@ -29,7 +29,7 @@ export class ArtistsComponent {
           };
         });
     });
-    console.log("artistInfo",this.artists)} catch (error) {
+   } catch (error) {
       console.error('Error getting profile', error);
     }
   }

@@ -1,8 +1,8 @@
 <div class="sidenav-header">
-  <img src="./../../../../assets/yopas.png" alt="imagenAlterna" [width]="profilePicSize()" [height]="profilePicSize()">
+  <img [src]="img" alt="No has iniciado sesion" [width]="profilePicSize()" [height]="profilePicSize()">
 <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
-  <div class="name-text"><h2>Donovan Barrientos</h2></div>
-  <div class="name-text"><p>donovan_ba.com</p></div>
+  <div class="name-text" *ngIf="!isLogged"><h2>Inicia sesion para comenzar</h2></div>
+  <div class="name-text" *ngIf="isLogged"><h2> {{name}} </h2></div>
 </div>
 </div>
 <mat-nav-list>

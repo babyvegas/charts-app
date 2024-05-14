@@ -27,7 +27,6 @@ export class TracksPageComponent {
         try {
           this.datos = await this.tokenService.fetchTopTracks(token).then((data) => {
             this.tracks = data.items; // Explicitly type dataSource as any[];
-
             this.tracks = this.tracks.map((track) => {
               return {
                 trackName: track.name,
