@@ -9,7 +9,7 @@ export class ArtistsComponent {
   constructor(
     private tokenService: TokenService
   ) { }
-  displayedColumns: string[] = ['position','artistName', 'artistGenres', 'img'];
+  displayedColumns: string[] = ['position','artistName', 'artistGenres'];
   dataSource: any[] = [];
   public datos: any;
   artists: any[] = [];

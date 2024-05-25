@@ -18,19 +18,23 @@ export class AboutPageComponent implements OnInit {
     this.tokenService.loggedIn$.subscribe(isLogged => {
       this.isLogged = isLogged;
     })
-    this.tokenService.profileData.subscribe(profile => {
-      if(profile){
-        this.name = profile.display_name;
-        this.img = profile.images[1].url;
-        this.email = profile.email;
-      }
-    });
+
+    if(this.tokenService.profileData){
+      this.tokenService.profileData.subscribe(data => {
+        if(data){
+          this.name = data.display_name;
+          this.img = data.images && data.images[1] ? data.images[1].url : '';
+          this.email = data.email;
+        }
+      });
+    }
+
     if(!this.isLogged){
-    try {
-      this.profile = await this.tokenService.getAuthCode();
-    } catch (error) {
-      console.error('Error getting profile', error);
+      try {
+        this.profile = await this.tokenService.getAuthCode();
+      } catch (error) {
+        console.error('Error getting profile', error);
+      }
     }
   }
-}
 }
