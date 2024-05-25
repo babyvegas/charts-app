@@ -9,7 +9,7 @@ export class ArtistsComponent {
   constructor(
     private tokenService: TokenService
   ) { }
-  displayedColumns: string[] = ['artistName', 'artistGenres', 'img'];
+  displayedColumns: string[] = ['position','artistName', 'artistGenres', 'img'];
   dataSource: any[] = [];
   public datos: any;
   artists: any[] = [];
@@ -21,8 +21,9 @@ export class ArtistsComponent {
     try {
       this.datos = await this.tokenService.fetchTopArtists(token).then((data) => {
         this.artists = data.items; // Explicitly type dataSource as any[];
-        this.artists = this.artists.map((artist) => {
+        this.artists = this.artists.map((artist, index) => {
           return {
+            position: index + 1,
             artistName: artist.name,
             artistGenres: artist.genres,
             img: artist.images[0].url, // Assign the 'tracks' array to the 'dataSource' property

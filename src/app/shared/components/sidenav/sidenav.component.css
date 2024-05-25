@@ -51,4 +51,7 @@
   border-left-color: blue;
   background: rgba(0, 0, 0, 0.05);
 }
+.spacer {
+  flex: 1 1 auto;
+}
 

@@ -58,7 +58,7 @@ export class SidenavComponent {
       route: '/home'
     },    {
       icon: 'account_circle',
-      label: 'About me',
+      label: 'About',
       route: '/about'
     },
     {

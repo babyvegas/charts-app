@@ -1,0 +1,83 @@
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.text-gradient {
+  background: -webkit-linear-gradient(74deg, rgb(66, 133, 244) 0px, rgb(155, 114, 203) 9%, rgb(217, 101, 112) 20%, rgb(217, 101, 112) 24%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Google Sans", "Helvetica Neue", sans-serif;
+  font-size: 56px;
+  font-weight: 500;
+  letter-spacing: -1.68px;
+  line-height: 64px;
+}
+.app-question{
+  color: rgb(196, 199, 197);
+  font-size: 56px;
+  font-weight: 500;
+  font-family: "Google Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: -1.68px;
+  line-height: 64px;
+}
+/* Reset general de márgenes y paddings */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  display: flex;
+}
+.container {
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  flex: 1;
+  height: 80vh;
+}
+
+.cards-section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.card {
+  background-color: #f0f4f8;
+  border-radius: 8px;
+  padding: 20px;
+  flex: 1 1 calc(50% - 20px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+}
+.info-section {
+  background-color: #f0f4f8;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+.info-section p {
+  margin-bottom: 10px;
+}
+.info-section a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+.info-section a:hover {
+  text-decoration: underline;
+}
+.footer {
+  align-items: center;
+  justify-content: center;
+}

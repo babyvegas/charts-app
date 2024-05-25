@@ -1,0 +1,14 @@
+.home-page-css {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.home-page-css p {
+  font-size: 2.5em;
+  background: linear-gradient(to right, #4285F4, #34A853, #FBBC05, #EA4335);
+}
