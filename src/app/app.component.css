@@ -20,3 +20,6 @@ mat-sidenav, mat-sidenav-content {
 .spacer {
   flex: 1 1 auto;
 }
+p {
+  font-family: sans-serif;
+}
