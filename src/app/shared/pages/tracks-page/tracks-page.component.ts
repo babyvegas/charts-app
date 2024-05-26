@@ -11,7 +11,7 @@ export class TracksPageComponent {
     private tokenService: TokenService
   ) { }
 
-  displayedColumns: string[] = ['position', 'trackName', 'trackArtist', 'img'];
+  displayedColumns: string[] = ['position', 'trackArtist', 'trackName'];
   dataSource: any[] = [];
   public trackName: string = '';
   public trackArtist: string = '';
@@ -19,14 +19,14 @@ export class TracksPageComponent {
   public img: string = '';
   public email: string = '';
   public datos: any;
-  tracks: any[] = []; // Add the 'tracks' property with an empty array as its initial value
-  artists: any[] = []; // Add the 'artists' property with an empty array as its initial value
+  tracks: any[] = [];
+  artists: any[] = [];
 
   async ngOnInit() {
         let token = localStorage.getItem('access_token');
         try {
           this.datos = await this.tokenService.fetchTopTracks(token).then((data) => {
-            this.tracks = data.items; // Explicitly type dataSource as any[];
+            this.tracks = data.items;
             this.tracks = this.tracks.map((track, index) => {
               return {
                 position: index + 1,

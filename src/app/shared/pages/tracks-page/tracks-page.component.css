@@ -2,7 +2,15 @@
   width: 50px;
   border-radius: 50%;
 }
-.text-1 {
-  font-size: 15px;
-  margin-bottom: 10px;
+td {
+  padding: 10px;
+  text-align: center;
+}
+th {
+  padding: 10px;
+  text-align: center;
+}
+table {
+  padding-bottom: 20px;
+  align-items: center;
 }
