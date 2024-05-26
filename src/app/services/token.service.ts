@@ -14,7 +14,7 @@ export class TokenService {
   public loggedIn$ = this.loggedIn.asObservable();
   profile: any;
   private authorizationEndpoint = 'https://accounts.spotify.com/authorize';
-  private redirectUrl = 'http://localhost:4200/about';
+  private redirectUrl = 'https://babyvegas.github.io/charts-app/about';
   private scope = 'user-read-private user-read-email user-top-read';
   async getAuthCode(){
     const clientId = environment.clientId;
@@ -91,7 +91,7 @@ export class TokenService {
     params.append("client_id", clientId);
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://localhost:4200/about");
+    params.append("redirect_uri", "https://babyvegas.github.io/charts-app/about");
     params.append("code_verifier", verifier!);
 
     const result = await fetch("https://accounts.spotify.com/api/token", {
